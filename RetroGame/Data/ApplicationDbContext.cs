@@ -15,6 +15,7 @@ namespace RetroGame.Data
         }
 
         public DbSet<Platform> Platform { get; set; }
+        public DbSet<Publisher> Publisher { get; set; }
 
     }
 }
