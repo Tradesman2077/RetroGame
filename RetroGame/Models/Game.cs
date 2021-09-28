@@ -12,9 +12,11 @@ namespace RetroGame.Models
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        [Range(1970, int.MinValue)]
+        [Range(1970, int.MaxValue)]
         public int ReleaseYear { get; set; }
         public string Image { get; set; }
+
+        public string InfoText{get; set;}
 
         [Display(Name ="Platform Type")]
         public int PlatformId { get; set; }

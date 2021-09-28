@@ -1,0 +1,149 @@
+﻿@model RetroGame.Models.ViewModels.GameViewModel
+
+
+@{ 
+    var title = "Create Game";
+}
+
+<form method="post" enctype="multipart/form-data">
+    @if (Model.Game.Id !=0)
+    {
+        title = "Edit Game";
+        <input asp-for="Game.Id" hidden />
+    }
+
+    <div class="border p-3">
+        @*<div asp-validation-summary="ModelOnly"class="text-danger"></div>*@
+        <div class="form-group row">
+            <h2 class="text-info pl-3">@title</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Game.Name"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Game.Name" class="form-control" />
+                        <span asp-validation-for="Game.Name" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Game.ReleaseYear"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Game.ReleaseYear" class="form-control" />
+                        <span asp-validation-for="Game.ReleaseYear" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Game.InfoText"></label>
+                    </div>
+                    <div class="col-8">
+                        <textarea asp-for="Game.InfoText" class="form-control summernote"></textarea>
+
+
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        Image
+                    </div>
+                    <div class="col-8">
+                        <input type="file" name="files" id="uploadBox" multiple class="form-control" />
+
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Game.PlatformId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="Game.PlatformId" asp-items="@Model.PlatformSelectList" class="form-control">
+                            <option selected>--Select Platform--</option>
+                        </select>
+                        <span asp-validation-for="Game.PlatformId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Game.DeveloperId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="Game.DeveloperId" asp-items="@Model.DeveloperSelectList" class="form-control">
+                            <option selected>--Select Developer--</option>
+                        </select>
+                        <span asp-validation-for="Game.DeveloperId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+
+                        <div class="col p-1">
+                            @if (Model.Game.Id != 0)
+                            {
+                                //update
+                                <input type="submit" class="btn btn-primary w-100" value="Edit" />
+                            }
+                            else
+                            {
+                                //create
+                                <input type="submit" onclick="return validateInput()" class="btn btn-primary w-100" value="Create" />
+                            }
+
+                        </div>
+                        <div class="col p-1">
+                            <a asp-action="Index" class="btn btn-success w-100">
+                                <i class="fas fa-sign-out-alt"></i> Back
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                @* Keep this empty *@
+                @if (Model.Game.Id != 10)
+                {
+                    <img src="@WC.ImagePath@Model.Game.Image" width="100%" style="border-radius:5px; border:1px solid #bbb;" />
+                }
+
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+    <script>
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                height:250
+            });
+        });
+        function validateInput() {
+            if (document.getElementById("uploadBox").value=="") {
+                
+                Swal.fire(
+                    'Error',
+                    'Please add an image',
+                    'error'
+                )
+                return false;
+            }
+            return true;
+        }
+    </script>
+}
