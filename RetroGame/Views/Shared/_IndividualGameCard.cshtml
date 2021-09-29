@@ -6,18 +6,18 @@
             <div class="col-7"><label class="float-left">@Model.Name</label></div>
             <div class="col-5"><label class="float-right">@Model.ReleaseYear</label></div>
         </div>
-        <img class="card-img-top img-fluid d-block mx-auto mb-3 p-1"src="@WC.ImagePath@Model.Image"alt="Card img cap" />
+        <img class="card-img-top img-fluid d-block mx-auto mb-3 p-1"src="@WC.ImagePath@Model.Image"alt="Card img cap" style="max-height: 180px;max-width:142px"/>
         <div class="card-body p-1 px-3 row">
             <div class="col-6">
                 <span class="badge p-2 border w-100" style="background-color:lavenderblush">@Model.Platform.Name</span>
             </div>
             <div class="col-6 border-0">
-                <span class="badge p-2 w-100" style="background-color:aliceblue">@Model.Developer.Name</span>
+                <span class="badge p-2 w-100" style="background-color:aliceblue">@Model.Publisher.Name</span>
             </div>
-            <div class="col-12 p-2" style="font-size:13px; text-align:justify">
 
-                @Html.Raw(Model.InfoText)
-            </div>
+        <div class="col-12 p-2">
+            Developed by  @Model.Developer.Name
+        </div>
             <div class="col-12 p-2">
                 @GamePrice.GetHtmlAsyncPriceChart(Model.Name, Model.Platform.Name).Result.Remove(23)
             </div>

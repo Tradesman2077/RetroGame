@@ -10,6 +10,7 @@ namespace RetroGame.Models.ViewModels
         public IEnumerable<Game> Games { get; set; }
         public IEnumerable<Developer> Developers { get; set; }
         public IEnumerable<Platform> Platforms { get; set; }
+        public IEnumerable<Publisher> Publishers { get; set; }
 
     }
 

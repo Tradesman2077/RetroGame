@@ -27,9 +27,10 @@ namespace RetroGame.Controllers
         {
             HomeVM homeVm = new HomeVM()
             {
-                Games = _db.Game.Include(u=>u.Developer).Include(u=>u.Platform), 
+                Games = _db.Game.Include(u=>u.Developer).Include(u=>u.Platform).Include(u=>u.Publisher), 
                 Developers = _db.Developer,
-                Platforms = _db.Platform
+                Platforms = _db.Platform,
+                Publishers = _db.Publisher
             };
             return View(homeVm);
         }

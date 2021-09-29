@@ -22,10 +22,19 @@ namespace RetroGame.Models
         public int PlatformId { get; set; }
         [ForeignKey("PlatformId")]
         public virtual Platform Platform { get; set; }
+
+
         [Display(Name = "Developer Name")]
         public int DeveloperId { get; set; }
         [ForeignKey("DeveloperId")]
         public virtual Developer Developer { get; set; }
+
+
+        [Display(Name = "Publisher Name")]
+        public int PublisherId { get; set; }
+        [ForeignKey("PublisherId")]
+        public virtual Publisher Publisher { get; set; }
+
 
     }
 }

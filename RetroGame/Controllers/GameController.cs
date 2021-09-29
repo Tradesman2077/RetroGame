@@ -27,7 +27,7 @@ namespace RetroGame.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Game> objList = _db.Game.Include(u=>u.Platform).Include(u=>u.Developer);
+            IEnumerable<Game> objList = _db.Game.Include(u=>u.Platform).Include(u=>u.Developer).Include(u=>u.Publisher);
 
             //foreach (var obj in objList)
             //{
@@ -52,6 +52,11 @@ namespace RetroGame.Controllers
                     Value = i.Id.ToString()
                 }),
                 DeveloperSelectList = _db.Developer.Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                }),
+                PublisherSelectList = _db.Publisher.Select(i => new SelectListItem
                 {
                     Text = i.Name,
                     Value = i.Id.ToString()
@@ -147,6 +152,11 @@ namespace RetroGame.Controllers
                 Text = i.Name,
                 Value = i.Id.ToString()
             });
+            gameView.PublisherSelectList = _db.Publisher.Select(i => new SelectListItem
+            {
+                Text = i.Name,
+                Value = i.Id.ToString()
+            });
 
             return View(gameView);
 
@@ -159,7 +169,7 @@ namespace RetroGame.Controllers
             {
                 return NotFound();
             }
-            Game game = _db.Game.Include(u=>u.Platform).Include(u=>u.Developer).FirstOrDefault(u=>u.Id==id);
+            Game game = _db.Game.Include(u=>u.Platform).Include(u=>u.Developer).Include(u=>u.Publisher).FirstOrDefault(u=>u.Id==id);
 
 
             if (game == null)

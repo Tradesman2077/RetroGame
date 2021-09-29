@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RetroGame.Data;
 
 namespace RetroGame.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210929130618_pubstuff")]
+    partial class pubstuff
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,9 +58,6 @@ namespace RetroGame.Migrations
                     b.Property<int>("PlatformId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PublisherId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ReleaseYear")
                         .HasColumnType("int");
 
@@ -67,8 +66,6 @@ namespace RetroGame.Migrations
                     b.HasIndex("DeveloperId");
 
                     b.HasIndex("PlatformId");
-
-                    b.HasIndex("PublisherId");
 
                     b.ToTable("Game");
                 });
@@ -122,17 +119,9 @@ namespace RetroGame.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RetroGame.Models.Publisher", "Publisher")
-                        .WithMany()
-                        .HasForeignKey("PublisherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Developer");
 
                     b.Navigation("Platform");
-
-                    b.Navigation("Publisher");
                 });
 #pragma warning restore 612, 618
         }

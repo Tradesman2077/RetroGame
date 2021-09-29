@@ -11,5 +11,6 @@ namespace RetroGame.Models.ViewModels
         public Game Game { get; set; }
         public IEnumerable<SelectListItem> PlatformSelectList { get; set; }
         public IEnumerable<SelectListItem> DeveloperSelectList { get; set; }
+        public IEnumerable<SelectListItem> PublisherSelectList { get; set; }
     }
 }
