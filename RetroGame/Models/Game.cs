@@ -34,7 +34,8 @@ namespace RetroGame.Models
         public int PublisherId { get; set; }
         [ForeignKey("PublisherId")]
         public virtual Publisher Publisher { get; set; }
-
+        public string CompletePrice { get; set; }
+        public string ChangeInPrice { get; set; }
 
     }
 }

@@ -58,24 +58,14 @@ namespace RetroGame.Models
             var change = minusChange[0].InnerHtml.ToString();
             string changeAmount = changeInPrice[0].InnerHtml.ToString();
 
-
-
-
             if (change.Contains("&#43;"))
             {
-
-
                 changeAmount = "+£" + Conversion(changeAmount);
-
             }
             else
             {
                 changeAmount = "-£" + Conversion(changeAmount);
-
             }
-
-            //System.Diagnostics.Debug.WriteLine(Conversion(completePrice[0].InnerHtml.Trim()));
-
             return "Complete Price : " +"£"+ Conversion(completePrice[0].InnerHtml.Trim()) + " Change in price : " + changeAmount;
         }
     }

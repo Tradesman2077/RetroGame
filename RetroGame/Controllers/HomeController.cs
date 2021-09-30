@@ -31,7 +31,9 @@ namespace RetroGame.Controllers
                 Developers = _db.Developer,
                 Platforms = _db.Platform,
                 Publishers = _db.Publisher
+                
             };
+            
             return View(homeVm);
         }
 
