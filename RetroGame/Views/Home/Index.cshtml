@@ -14,9 +14,9 @@
     <div class="container align-content-center p-4">
         <div class="row"style="font-family: 'Bebas Neue', cursive; padding-top:4px;">
             <div class="col-3 d-flex justify-content-center shadow-lg p-1  rounded "><a asp-action="PlatformsList" style="color:black;"><h5>Platforms</h5></a></div>
-            <div class="col-3 d-flex justify-content-center shadow-lg p-1 rounded"><a asp-action="PlatformsList" style="color:black;"><h5>Publishers</h5></a></div>
-            <div class="col-3 d-flex justify-content-center shadow-lg p-1 rounded"><h5>Developers</h5></div>
-            <div class="col-3 d-flex justify-content-center shadow-lg p-1 p-1 rounded"style="color:black;"><h5>By Year</h5></div>
+            <div class="col-3 d-flex justify-content-center shadow-lg p-1 rounded"><a asp-action="PublishersList" style="color:black;"><h5>Publishers</h5></a></div>
+            <div class="col-3 d-flex justify-content-center shadow-lg p-1 rounded"><a asp-action="DevelopersList" style="color:black;"><h5>Developers</h5></a></div>
+            <div class="col-3 d-flex justify-content-center shadow-lg p-1 rounded"><a asp-action="GamesByYear" style="color:black;"><h5>By Year</h5></a></div>
         </div>
     </div>
     <br />
@@ -27,13 +27,11 @@
     <div class="row">
         @foreach (var game in Model.Games)
         {
-            
 
             //display games
             <partial name="_IndividualGameCard" model="game" />
         }
     </div>
-
 
 </div>
 @section Scripts {

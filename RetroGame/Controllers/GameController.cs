@@ -109,8 +109,11 @@ namespace RetroGame.Controllers
                 {
                     //update
                     var objFromDb = _db.Game.AsNoTracking().FirstOrDefault(u => u.Id == gameView.Game.Id);
-
-                    if (files.Count > 0)
+                    if(objFromDb.Image == null)
+                    {
+                        objFromDb.Image = WC.ImagePathNoImage;
+                    }
+                    if (files.Count > 0 )
                     {
                         string upload = webRootPath + WC.ImagePath;
                         string fileName = Guid.NewGuid().ToString();

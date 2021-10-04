@@ -8,5 +8,6 @@ namespace RetroGame
     public static class WC
     {
         public static string ImagePath = @"\images\game\";
+        public static string ImagePathNoImage = @"\images\game\noImage.jpg";
     }
 }

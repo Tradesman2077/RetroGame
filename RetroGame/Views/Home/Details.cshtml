@@ -17,7 +17,15 @@
             <div class="container rounded p-2">
                 <div class="row">
                     <div class="col-12 col-lg-4 p-1 text-center">
-                        <img src ="@WC.ImagePath@Model.Image" width="100%" class="rounded" />
+                        @if (Model.Image == null)
+                        {
+                            <img src="@WC.ImagePathNoImage"  style="width:100%;" class="rounded" />
+                        }
+                        else
+                        {
+                    <img src="@WC.ImagePath@Model.Image" style="width:100%;" class="rounded" />
+                        }
+
                     </div>
                     <div class="col-12 col-lg-8">
                         <div class="row pl-3">
@@ -26,7 +34,7 @@
                                     @Model.Platform.Name
                                 </span>
                                 <span class="badge p-3 border" style="background-color:azure">
-                                    Published by : @Model.Publisher.Name
+                                    Publisher : @Model.Publisher.Name
                                 </span>
                                 <span class="badge p-3 border" style="background-color:floralwhite">
                                     Developer : @Model.Developer.Name
@@ -53,7 +61,7 @@
         <div class="card-footer bg-dark">
             <div class="row">
                 <div class="col-12 col-md pb-1">
-                    <a asp-action="Index" class="btn bg-warning btn-square btn-large "style="height=50px;">Back</a>
+                    <a asp-action="Index" class="btn bg-warning btn-square btn-large">Back</a>
                 </div>
             </div>
         </div>
