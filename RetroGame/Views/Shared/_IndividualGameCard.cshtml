@@ -6,7 +6,7 @@
             <div class="col-7"><label class="float-left">@Model.Name</label></div>
             <div class="col-5"><label class="float-right">@Model.ReleaseYear</label></div>
         </div>
-        <img class="card-img-top img-fluid d-block mx-auto mb-3 p-1"src="@WC.ImagePath@Model.Image"alt="Card img cap" style="max-height: 180px;max-width:142px"/>
+        <img class="card-img-top img-fluid d-block mx-auto mb-3 p-1"src="@WC.ImagePath@Model.Image"alt="Card img cap" style="max-height:50%;max-width:50%"/>
         <div class="card-body p-1 px-3 row">
             <div class="col-6">
                 <span class="badge p-2 border w-100" style="background-color:lavenderblush">@Model.Platform.Name</span>
@@ -15,17 +15,8 @@
                 <span class="badge p-2 w-100" style="background-color:aliceblue">@Model.Publisher.Name</span>
             </div>
 
-        @*<div class="col-12 p-2">
-            Developed by  @Model.Developer.Name
-        </div>
-            <div class="col-12 p-2">
-                @GamePrice.GetHtmlAsyncPriceChart(Model.Name, Model.Platform.Name).Result.Remove(23)
-            </div>
-            <div class="col-12 p-2">
-                @GamePrice.GetHtmlAsyncPriceChart(Model.Name, Model.Platform.Name).Result.Substring(23)
-            </div>*@
             <div class="col-12 p-1">
-                <a asp-action="Details" asp-route-id="Model.Id" class="btn btn-light form-control btn-sm p-2" style="height:40px;margin-top:4px; ">View Details</a>
+                <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-light form-control btn-sm p-2" style="height:40px;margin-top:4px;background-color:dimgrey">View Details</a>
             </div>
         </div>
     </div>

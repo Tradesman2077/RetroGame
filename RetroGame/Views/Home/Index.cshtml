@@ -1,38 +1,40 @@
 ﻿@model RetroGame.Models.ViewModels.HomeVM
 <div class="container">
-    <div class="text-center">
-        <button class="btn btn-danger filter-button " data-filter="all">All</button>
+    @*<div class="text-center">
+            <button class="btn btn-danger filter-button " data-filter="all">All</button>
 
-        @foreach (var obj in Model.Platforms)
-        {
-            <button class="btn btn-outline-secondary filter-button p-1" data-filter="@obj.Name.Replace(' ', '_')">
-                @obj.Name
-            </button>
-        }
+            @foreach (var obj in Model.Platforms)
+            {
+                <button class="btn btn-outline-secondary filter-button p-1" data-filter="@obj.Name.Replace(' ', '_')">
+                    @obj.Name
+                </button>
+            }
 
+        </div>*@
+    <div class="container align-content-center p-4">
+        <div class="row"style="font-family: 'Bebas Neue', cursive; padding-top:4px;">
+            <div class="col-3 d-flex justify-content-center shadow-lg p-1  rounded "><a asp-action="PlatformsList" style="color:black;"><h5>Platforms</h5></a></div>
+            <div class="col-3 d-flex justify-content-center shadow-lg p-1 rounded"><a asp-action="PlatformsList" style="color:black;"><h5>Publishers</h5></a></div>
+            <div class="col-3 d-flex justify-content-center shadow-lg p-1 rounded"><h5>Developers</h5></div>
+            <div class="col-3 d-flex justify-content-center shadow-lg p-1 p-1 rounded"style="color:black;"><h5>By Year</h5></div>
+        </div>
     </div>
     <br />
-    <div class="text-center">
+    <div class="text-center"style="font-family: 'Bebas Neue', cursive;">
         <h4 style="padding:4px;">Recently Added</h4>
     </div>
+    <br />
     <div class="row">
         @foreach (var game in Model.Games)
         {
-            //game.CompletePrice = GamePrice.GetHtmlAsyncPriceChart(game.Name, game.Platform.Name).Result;
+            
 
             //display games
             <partial name="_IndividualGameCard" model="game" />
         }
     </div>
-    
-    <div class="container align-content-center p-4">
-        <div class="row">
-            <div class="col-3 d-flex justify-content-center shadow-sm p-1"><h5>Platforms</h5></div>
-            <div class="col-3 d-flex justify-content-center shadow-sm p-1"><h5>Publishers</h5></div>
-            <div class="col-3 d-flex justify-content-center shadow-sm p-1"><h5>Developers</h5></div>
-            <div class="col-3 d-flex justify-content-center shadow-sm p-1"><h5>By Year</h5></div>
-        </div>
-    </div>
+
+
 </div>
 @section Scripts {
     <script>

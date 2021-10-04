@@ -12,7 +12,7 @@ namespace RetroGame.Models
         public static string Conversion(string dollars)
         {
             ///conversion rate 
-            double POUNDSTODOLLARS = 0.74;
+            double POUNDSTODOLLARS = 0.73;
 
             double pounds;
             string stringPounds = "";
@@ -38,7 +38,7 @@ namespace RetroGame.Models
 
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(html);
-
+            ///get price data from web search
             var productsHtml = htmlDocument.DocumentNode.Descendants("td")
                 .Where(node => node.GetAttributeValue("id", "")
                     .Equals("complete_price")).ToList();
@@ -66,7 +66,7 @@ namespace RetroGame.Models
             {
                 changeAmount = "-£" + Conversion(changeAmount);
             }
-            return "Complete Price : " +"£"+ Conversion(completePrice[0].InnerHtml.Trim()) + " Change in price : " + changeAmount;
+            return "Complete price : " +"£"+ Conversion(completePrice[0].InnerHtml.Trim()) + " Change in price : " + changeAmount;
         }
     }
 }

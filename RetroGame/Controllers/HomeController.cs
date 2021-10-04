@@ -27,14 +27,34 @@ namespace RetroGame.Controllers
         {
             HomeVM homeVm = new HomeVM()
             {
-                Games = _db.Game.Include(u=>u.Developer).Include(u=>u.Platform).Include(u=>u.Publisher), 
+                //get last 6 games
+                //Games = _db.Game.TakeLast(6).Include(u => u.Developer).Include(u => u.Platform).Include(u => u.Publisher),
+                //Developers = _db.Developer,
+                //Platforms = _db.Platform,
+                //Publishers = _db.Publisher
+
+                //different method to get last 6 records
+                Games = _db.Game.Skip(Math.Max(0, _db.Game.Count() - 6)).Include(u => u.Developer).Include(u => u.Platform).Include(u => u.Publisher),
                 Developers = _db.Developer,
                 Platforms = _db.Platform,
                 Publishers = _db.Publisher
-                
+
             };
             
             return View(homeVm);
+        }
+        public IActionResult Details(int id)
+        {
+            Game game = _db.Game.Include(u=>u.Platform).Include(u => u.Publisher).Include(u=>u.Developer).Where(u => u.Id == id).FirstOrDefault();
+
+
+            return View(game);
+        }
+        public IActionResult PlatformsList()
+        {
+            IEnumerable<Platform> platList = _db.Platform;
+
+            return View(platList);
         }
 
         public IActionResult Privacy()
