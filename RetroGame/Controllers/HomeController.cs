@@ -50,6 +50,13 @@ namespace RetroGame.Controllers
 
             return View(game);
         }
+        public IActionResult DetailsAlt(int id)
+        {
+            Game game = _db.Game.Include(u => u.Platform).Include(u => u.Publisher).Include(u => u.Developer).Where(u => u.Id == id).FirstOrDefault();
+
+
+            return View(game);
+        }
         public IActionResult PlatformsList()
         {
             IEnumerable<Platform> platList = _db.Platform.OrderBy(u => u.Name);
@@ -73,8 +80,13 @@ namespace RetroGame.Controllers
             List<int> gameYears = _db.Game
                                   .Select(p => p.ReleaseYear)
                                   .Distinct().ToList();
-
             return View(gameYears);
+        }
+        public IActionResult ListByRowDev(int id)
+        {
+            List<Game> gamesList = _db.Game.Where(u => u.DeveloperId == id).Include(u=>u.Developer).Include(u=>u.Publisher).Include(u=>u.Platform).OrderBy(u=>u.Name).ToList();
+
+            return View(gamesList);
         }
         public IActionResult Privacy()
         {
@@ -85,6 +97,12 @@ namespace RetroGame.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        public IActionResult BackToList(int id)
+        {
+
+            return View("/ Home / ListByRowDev / "+ id);
+            
         }
     }
 }
